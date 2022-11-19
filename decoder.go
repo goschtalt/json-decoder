@@ -15,7 +15,7 @@
 //		...
 //
 //		"github.com/goschtalt/goschtalt"
-//		_ "github.com/goschtalt/goschtalt/extensions/decoders/json"
+//		_ "github.com/goschtalt/json-decoder"
 //	)
 //
 // See the example for how to use this extension package.
