@@ -98,7 +98,7 @@ func TestDecode(t *testing.T) {
 				assert.Empty(cmp.Diff(tc.expected, got, cmpopts.IgnoreUnexported(meta.Object{})))
 			}
 
-			if tc.expectedErr == unknown {
+			if errors.Is(unknown, tc.expectedErr) {
 				assert.NotNil(err)
 				return
 			}
