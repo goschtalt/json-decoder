@@ -5,15 +5,13 @@ package json_test
 
 import (
 	"fmt"
-	"io/fs"
 	"strings"
+	"testing/fstest"
 
 	"github.com/goschtalt/goschtalt"
 	_ "github.com/goschtalt/json-decoder"
-	"github.com/psanford/memfs"
 )
 
-const filename = `example.json`
 const text = `{
   "Example": {
       "Version": 1,
@@ -21,18 +19,15 @@ const text = `{
   }
 }`
 
-func getFS() fs.FS {
-	mfs := memfs.New()
-	if err := mfs.WriteFile(filename, []byte(text), 0755); err != nil {
-		panic(err)
-	}
-
-	return mfs
-}
-
 func Example() {
+	fs := fstest.MapFS{
+		"example.json": &fstest.MapFile{
+			Data: []byte(text),
+			Mode: 0644,
+		},
+	}
 	// Normally, you use something like os.DirFS("/etc/program")
-	g, err := goschtalt.New(goschtalt.AddDir(getFS(), "."))
+	g, err := goschtalt.New(goschtalt.AddDir(fs, "."))
 	if err != nil {
 		panic(err)
 	}
