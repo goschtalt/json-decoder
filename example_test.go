@@ -15,9 +15,9 @@ import (
 
 const filename = `example.json`
 const text = `{
-  "example": {
-      "version": 1,
-      "colors": ["red", "green", "blue"]
+  "Example": {
+      "Version": 1,
+      "Colors": ["red", "green", "blue"]
   }
 }`
 
